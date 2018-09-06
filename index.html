@@ -36,7 +36,8 @@
 <body class="index-page sidebar-collapse">
 	<div id="app">
 
-    <nav class="navbar navbar-expand-lg bg-white fixed-top">
+    <!-- Add this class to make fixed Navbar "fixed-top"       -->
+    <nav class="navbar navbar-expand-lg bg-white mb-0">
         <div class="container">
             <div class="navbar-translate">
                 <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index"
@@ -99,7 +100,7 @@
 
         <div class="main">
             <!-- <div class=""></div> -->
-            <div class="container" id="about" style="margin-top: 50px;">
+            <div class="container" id="about" style="padding-top: 50px;">
                 <div class="row">
                     <div class="col-md-6">
                         <img src="assets/img/steven-avatar.png" class="img-fluid" alt="">
@@ -147,29 +148,73 @@
             </div>
         </div>
 
+        <!-- Work Experience Slider -->
+        
+
+
         <!-- Work Experience -->
         <div class="experience" id="portfolio">
             <div class="container">
                 <h3>Work Experience</h3>
-                <div class="row">
-                    <div class="col-md-6">
-                        <h5 class="no-margin">Oct 2017 - Present</h5>
-                        <h5 class="no-margin">Africa’s Talking Ltd - Yaba, Lagos. Lead Developer</h5>
-                        <p>Developer Relations lead for Nigeria
-Contribute to the Nigerian developer community 
-through events and tutorials.
-Worked on creating an accrual failure detector for monitoring services
-Part of the core team for the  product</p>
+
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+                        <div class="carousel-inner" role="listbox">
+                            <div class="carousel-item active" style="margin-bottom: 30px;">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5 class="no-margin">Oct 2017 - Present</h5>
+                                        <h5 class="no-margin">Africa’s Talking Ltd - Yaba, Lagos. Lead Developer</h5>
+                                        <p>Developer Relations lead for Nigeria
+                                            Contribute to the Nigerian developer community 
+                                            through events and tutorials.
+                                            Worked on creating an accrual failure detector for monitoring services
+                                            Part of the core team for the  product</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="no-margin">Aug 2016 - Sep 2017</h5>
+                                        <h5 class="no-margin">Hotels Booking Limited (hotels.ng) - Yaba, Lagos Backend Developer</h5>
+                                        <p>Lead developer for several products, such as hotels.ng/places
+                                            Established compatibility with third party software products.
+                                            Created automated reports for strategic planning
+                                            Worked on various parts of the Locations API.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item" style="margin-bottom: 30px;">
+                               <div class="row">
+                                    <div class="col-md-6">
+                                        <h5 class="no-margin">Oct 2017 - Present</h5>
+                                        <h5 class="no-margin">Africa’s Talking Ltd - Yaba, Lagos. Lead Developer</h5>
+                                        <p>Developer Relations lead for Nigeria
+                                            Contribute to the Nigerian developer community 
+                                            through events and tutorials.
+                                            Worked on creating an accrual failure detector for monitoring services
+                                            Part of the core team for the  product</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="no-margin">Aug 2016 - Sep 2017</h5>
+                                        <h5 class="no-margin">Hotels Booking Limited (hotels.ng) - Yaba, Lagos Backend Developer</h5>
+                                        <p>Lead developer for several products, such as hotels.ng/places
+                                            Established compatibility with third party software products.
+                                            Created automated reports for strategic planning
+                                            Worked on various parts of the Locations API.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <ol class="carousel-indicators" style="bottom: -50px">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""></li>
+                        </ol>
+
                     </div>
-                    <div class="col-md-6">
-                        <h5 class="no-margin">Aug 2016 - Sep 2017</h5>
-                        <h5 class="no-margin">Hotels Booking Limited (hotels.ng) - Yaba, Lagos Backend Developer</h5>
-                        <p>Lead developer for several products, such as hotels.ng/places
-Established compatibility with third party software products.
-Created automated reports for strategic planning
-Worked on various parts of the Locations API.</p>
-                    </div>
-                </div>
+
+
+
+                
             </div>
         </div>
         <!-- Work Experience -->
@@ -180,7 +225,7 @@ Worked on various parts of the Locations API.</p>
                 <h3>Recent Blog</h3>
                 <div class="row">
                     <div class="col-md-4 singleblog" v-for="blog in response">
-                        <p>{{blog.date_gmt}}</p>
+                        <p>{{blog.date_gmt | moment}}</p>
                         <h4 class="mt-0">{{blog.title.rendered}}</h4>
                         <p v-html="blog.excerpt.rendered"></p>
                         <a :href="blog.link" target="_blank" class="btn btn-white btn-steven">READ MORE</a>
@@ -263,12 +308,12 @@ Worked on various parts of the Locations API.</p>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.min.js"></script>
 
-<script type="text/javascript">
-
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 
 
 <script type="text/javascript">
+    
+    moment().format();
 
 	var data = {
 		test: "Hello World",
@@ -290,16 +335,25 @@ Worked on various parts of the Locations API.</p>
 	new Vue({
 		el: '#app',
 		data: data,
+        filters: {
+          moment: function (dateTime) {
+            return moment(dateTime).format('DD MMM YYYY');
+          }
+        },
+        methods: {
+            moment: function () {
+                return moment();
+            }
+        },
 		mounted() {
             axios.get('https://stephenafamo.com/blog/wp-json/wp/v2/posts?per_page=3&categories=61')
             .then(function (response) {
                 // alert("Hello WOrld");
                 this.data.test = "Hello Worked";
                 this.data.response = response.data;
-                // this.responseTime = response.data[0].date_gmt;
-                // this.responseLink = response.data[0].link;
-                // this.responseContent = response.data[0].content.rendered
-             //     console.log(this.responseTime + " , " + this.response + " , " + this.responseLink + " , " + this.responseContent);
+
+                // var dateTime = new Date(response.data[0].date_gmt);
+                // dateTime = moment(dateTime).format("DD MMM YYYY");
             })
             .catch(function (error) {
                 console.log(error);
