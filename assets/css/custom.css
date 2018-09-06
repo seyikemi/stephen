@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
 .page-header {
   /*background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), rgba(0, 0, 0, 0.12));*/
-  background: linear-gradient(#000000b3, #000000b3), url(../img/steven-bg.png);
+  background: linear-gradient(#00000000, #00000000), url(../img/steven-bg.png);
 }
 
 .no-margin {
@@ -84,7 +84,7 @@
 }
 
 .index-page .page-header {
-  height: 100vh;
+  height: 88vh;
 }
 
 .index-page .page-header .container>.content-center {
@@ -351,7 +351,13 @@ h2.title {
 .wizard-card .btn-finish {
   display: none;
 }
-
+.btn-white:hover{
+  background-color: #024D7D;
+}
+.btn-simple:hover{
+  background-color: white!important;
+  color: #024D7D!important;
+}
 .wizard-card .description {
   color: #999999;
   font-size: 14px;
@@ -445,6 +451,14 @@ output {
 .text-color {
   color: #119239;
 }
+/*#home{
+    position: absolute;
+    width: 100%;
+    top: 0;
+}*/
+#home{
+  /*z-index: -1;*/
+}
 
 .display-inline {
   display: inline-block;
@@ -453,6 +467,7 @@ output {
 .min-h {
   min-height: 598px;
 }
+
 
 .navbar-brand img {
   width: 247px;
@@ -556,6 +571,9 @@ output {
 
 @media only screen and (max-width: 640px) {
   /* Add your custom styles here for Mobile */
+  .btn-download{
+    margin-top: 0px!important;
+  }
   .head-q {
     font-size: 1.8em !important;
     margin-top: 0px;
@@ -657,7 +675,7 @@ output {
   font-size: 20px;
 }
 .steve-logo{
-  margin-top: 90px;
+  margin-top: 30px;
   margin-bottom: 24px;
 }
 .actions{
@@ -681,6 +699,7 @@ output {
 .btn-download{
   background-color: #024D7D;
   color: white;
+  margin-top: 150px;
 }
 .steven-skills{
   padding-top: 50px;
@@ -718,4 +737,15 @@ margin-top: 0px;
   background-size: cover;
   background-attachment: fixed;
   padding: 50px 0px;
+}
+.carousel-indicators .active {
+    background-color: #024d7d;
+}
+.carousel-indicators li{
+  background-color: #c5c5c5;
+}
+@media screen and (max-width: 991px){
+  .sidebar-collapse .navbar-collapse:before{
+    background: #035a92!important;
+  }
 }
